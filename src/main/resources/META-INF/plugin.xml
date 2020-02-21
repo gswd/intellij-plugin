@@ -1,0 +1,82 @@
+<idea-plugin>
+    <id>com.props.intellij-plugin</id>
+    <name>Plugin display name here</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Sample Calendar" secondary="true" icon="/myToolWindow/plus.png" anchor="right"
+                    factoryClass="com.extension.myToolWindow.MyToolWindowFactory"/>
+
+        <projectService serviceImplementation="com.extension.service.ProjectServiceSample" />
+        <applicationService serviceImplementation="com.extension.service.ApplicationServiceSample"/>
+        <configurationType implementation="com.runConf.DemoRunConfigurationType"/>
+        <treeStructureProvider implementation="com.treeStructure.TextOnlyTreeStructureProvider"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="com.props.PopupDialogAction" class="com.props.PopupDialogAction" text="Pop Dialog Action"
+                description="SDK action example">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="com.action.ShowSourceRootsActions" class="com.action.ShowSourceRootsActions"
+                text="Show Source Roots" description="Illustrates how to get source roots">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id = "com.action.ProjectFileIndexSampleAction" class="com.action.ProjectFileIndexSampleAction"
+                text="FileProjectIndex in Action"  description="Illustrates how to get source roots">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+
+        <action id="com.action.EditorAreaIllustration"
+                class="com.action.EditorAreaIllustration"
+                text="Editor Replace Text"
+                description="Replaces selected text with 'Replacement'."
+                icon="/icons/sdk_16.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="com.action.EditorHandlerIllustration"
+                class="com.action.EditorHandlerIllustration"
+                text="Editor Add Caret"
+                description="Adds a second caret below the existing one."
+                icon="/icons/sdk_16.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <!-- Place this entry first in the popup menu; it's always enabled if a project and editor are open -->
+        <action id="com.action.EditorIllustrationAction"
+                class="com.action.EditorIllustrationAction"
+                text="Caret Position"
+                description="Reports information about the caret position."
+                icon="/icons/sdk_16.svg">
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt G"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="com.psi.PsiNavigationDemoAction" class="com.psi.PsiNavigationDemoAction" text="PSI Navigation"
+                description="PSI Navigation Demo...">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <idea-version since-build="193"/>
+    <projectListeners>
+        <listener class="com.listener.MyToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    </projectListeners>
+    <applicationListeners>
+        <listener class="com.listener.MyVfsListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </applicationListeners>
+
+
+</idea-plugin>
